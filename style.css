@@ -1,0 +1,68 @@
+/* Definições Gerais e da Tela */
+body {
+    /* Altura e Largura de toda a tela (viewport) */
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex; /* Centraliza o 'screen-container' na tela */
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #282c34; /* Fundo escuro */
+}
+
+/* d. Largura e altura da tela (área de visualização do letreiro) */
+.screen-container {
+    width: 90%; /* Largura da área de visualização */
+    height: 150px; /* Altura da área de visualização */
+    background-color: #ffffff; /* Fundo do letreiro */
+    border: 5px solid #61dafb;
+    /* e. Espaço livre em torno do letreiro (margem interna) */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* **Essencial:** Esconde o texto que está fora da área */
+    display: flex;
+    align-items: center;
+}
+
+/* Contêiner que permite o deslizamento sem quebrar a linha */
+.marquee-wrapper {
+    /* Garante que o wrapper use 100% da largura do screen-container para o cálculo */
+    width: 100%;
+    /* Centraliza o conteúdo verticalmente dentro do wrapper */
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do Texto do Letreiro */
+.marquee-content {
+    /* f. Alinhamento do texto (já que o texto é movido por completo, o alinhamento é visual) */
+    white-space: nowrap; /* Impede que o texto quebre linha */
+    font-size: 2em;
+    font-weight: bold;
+    color: #282c34;
+    /* O texto começa fora da tela, à esquerda */
+    transform: translateX(100%);
+
+    /* Animação CSS */
+    /* a. Deslizar até o outro lado e voltar.
+       b. Iniciando da esquerda para a direita.
+       g. Controle a velocidade (30s) */
+    animation: slide-bounce 30s linear infinite;
+}
+
+/* Definição da Animação (Keyframes) */
+@keyframes slide-bounce {
+    /* Início: O texto está completamente fora à direita (b) */
+    0% {
+        transform: translateX(100%);
+    }
+    /* Metade: O texto está completamente fora à esquerda (a) */
+    50% {
+        transform: translateX(-100%);
+    }
+    /* Fim: O texto volta à posição inicial (a) */
+    100% {
+        transform: translateX(100%);
+    }
+}
